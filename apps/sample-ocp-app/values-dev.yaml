@@ -1,0 +1,44 @@
+replicaCount: 1
+
+image:
+  repository: quay.io/sample/ocp-app
+  tag: "latest"
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "500m"
+
+configMap:
+  enabled: true
+  data:
+    APP_ENV: dev
+    LOG_LEVEL: debug
+    API_URL: "http://api-gateway.dev.svc:8080"
+
+secret:
+  enabled: true
+  data:
+    DB_PASSWORD: ZGV2LXBhc3N3b3Jk
+    API_KEY: ZGV2LWFwaS1rZXk=
+
+probes:
+  liveness:
+    path: /health
+    port: 8080
+    initialDelaySeconds: 10
+    periodSeconds: 10
+  readiness:
+    path: /ready
+    port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 5
