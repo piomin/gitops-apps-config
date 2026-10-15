@@ -31,7 +31,8 @@ secret:
     DB_PASSWORD: cHJvZC1wYXNzd29yZA==
     API_KEY: cHJvZC1hcGkta2V5
 
-#probes:
+probes:
+  enabled: false
 #  liveness:
 #    path: /health
 #    port: 8080
