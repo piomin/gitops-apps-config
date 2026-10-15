@@ -1,8 +1,8 @@
 replicaCount: 2
 
 image:
-  repository: quay.io/pminkows/sample-ocp-app
-  tag: "1.1"
+  repository: image-registry.openshift-image-registry.svc:5000/ci/sample-ocp-app
+  tag: "07cf57d2fc85f309f6d0f0eacbc84ef8afee0f1c"
   pullPolicy: IfNotPresent
 
 service:
