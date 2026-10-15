@@ -2,7 +2,7 @@ replicaCount: 3
 
 image:
   repository: image-registry.openshift-image-registry.svc:5000/ci/sample-ocp-app
-  tag: "1.0.0"
+  tag: "1.0.1"
   pullPolicy: IfNotPresent
 
 service:
