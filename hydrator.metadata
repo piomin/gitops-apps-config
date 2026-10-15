@@ -1,7 +1,7 @@
 {
   "repoURL": "https://github.com/piomin/gitops-apps-config.git",
-  "drySha": "db7d33d2d21eff3689849a13081b64e39b223559",
+  "drySha": "0acef507df459339e60afc5996fc5f8642acd3c5",
   "author": "piomin <piotr.minkowski@gmail.com>",
-  "date": "2026-10-15T09:35:11Z",
-  "subject": "update@1"
+  "date": "2026-10-15T12:57:29Z",
+  "subject": "v1.1"
 }
