@@ -72,7 +72,7 @@ spec:
                 name: sample-ocp-app-base-app
             - secretRef:
                 name: sample-ocp-app-base-app
-          image: image-registry.openshift-image-registry.svc:5000/ci/sample-ocp-app:67c03d58686cd3199b3b0b55d1938d1fc136f246
+          image: image-registry.openshift-image-registry.svc:5000/ci/sample-ocp-app:69ed357441e5a9e65425aedafdae8e678fe3baa3
           imagePullPolicy: Always
           name: base-app
           ports:
