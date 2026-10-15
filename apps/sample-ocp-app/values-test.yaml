@@ -31,14 +31,14 @@ secret:
     DB_PASSWORD: dGVzdC1wYXNzd29yZA==
     API_KEY: dGVzdC1hcGkta2V5
 
-probes:
-  liveness:
-    path: /health
-    port: 8080
-    initialDelaySeconds: 15
-    periodSeconds: 10
-  readiness:
-    path: /ready
-    port: 8080
-    initialDelaySeconds: 5
-    periodSeconds: 5
+#probes:
+#  liveness:
+#    path: /health
+#    port: 8080
+#    initialDelaySeconds: 15
+#    periodSeconds: 10
+#  readiness:
+#    path: /ready
+#    port: 8080
+#    initialDelaySeconds: 5
+#    periodSeconds: 5
