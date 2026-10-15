@@ -1,0 +1,98 @@
+apiVersion: v1
+data:
+  API_KEY: cHJvZC1hcGkta2V5
+  DB_PASSWORD: cHJvZC1wYXNzd29yZA==
+kind: Secret
+metadata:
+  labels:
+    app.kubernetes.io/instance: sample-ocp-app
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: base-app
+    helm.sh/chart: base-app-0.1.0
+  name: sample-ocp-app-base-app
+type: Opaque
+---
+apiVersion: v1
+data:
+  API_URL: http://api-gateway.prod.svc:8080
+  APP_ENV: production
+  LOG_LEVEL: warn
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/instance: sample-ocp-app
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: base-app
+    helm.sh/chart: base-app-0.1.0
+  name: sample-ocp-app-base-app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/instance: sample-ocp-app
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: base-app
+    helm.sh/chart: base-app-0.1.0
+  name: sample-ocp-app-base-app
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/instance: sample-ocp-app
+    app.kubernetes.io/name: base-app
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: sample-ocp-app
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: base-app
+    helm.sh/chart: base-app-0.1.0
+  name: sample-ocp-app-base-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: sample-ocp-app
+      app.kubernetes.io/name: base-app
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: sample-ocp-app
+        app.kubernetes.io/name: base-app
+    spec:
+      containers:
+        - envFrom:
+            - configMapRef:
+                name: sample-ocp-app-base-app
+            - secretRef:
+                name: sample-ocp-app-base-app
+          image: image-registry.openshift-image-registry.svc:5000/ci/sample-ocp-app:1.0.0
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 15
+          name: base-app
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi
