@@ -1,0 +1,8 @@
+{
+  "repoURL": "https://github.com/piomin/gitops-apps-config.git",
+  "drySha": "51e4953f0d273888c33eb77280d337aaee03267a",
+  "author": "piomin <piotr.minkowski@gmail.com>",
+  "date": "2026-10-15T06:17:22Z",
+  "subject": "Disable liveness and readiness probes for dev environment",
+  "body": "Make probes conditional via probes.enabled flag so they can be\ntoggled per environment. Disabled for dev, kept enabled for test/prod.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\n"
+}
