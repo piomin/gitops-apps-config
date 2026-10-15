@@ -5,6 +5,6 @@ To hydrate the manifests in this repository, run the following commands:
 ```shell
 git clone https://github.com/piomin/gitops-apps-config.git
 # cd into the cloned directory
-git checkout a37a1c269eea93b9d1bc6cec6270185a2aecdea1
+git checkout db7d33d2d21eff3689849a13081b64e39b223559
 helm template . --name-template sample-ocp-app --namespace pminkows-dev --values ./apps/sample-ocp-app/values-dev.yaml --include-crds
 ```
