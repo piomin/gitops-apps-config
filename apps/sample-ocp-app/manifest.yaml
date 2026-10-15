@@ -72,11 +72,23 @@ spec:
                 name: sample-ocp-app-base-app
             - secretRef:
                 name: sample-ocp-app-base-app
-          image: quay.io/pminkows/sample-ocp-app:1.0.1
+          image: image-registry.openshift-image-registry.svc:5000/ci/sample-ocp-app:07cf57d2fc85f309f6d0f0eacbc84ef8afee0f1c
           imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 15
           name: base-app
           ports:
             - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
           resources:
             limits:
               cpu: 2000m
