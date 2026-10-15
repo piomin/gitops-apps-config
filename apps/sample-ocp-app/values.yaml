@@ -33,6 +33,7 @@ secret:
   #   API_KEY: c2VjcmV0
 
 probes:
+  enabled: true
   liveness:
     path: /health
     port: 8080

@@ -31,6 +31,7 @@ spec:
                 name: {{ include "base-app.fullname" . }}
             {{- end }}
           {{- end }}
+          {{- if .Values.probes.enabled }}
           livenessProbe:
             httpGet:
               path: {{ .Values.probes.liveness.path }}
@@ -43,5 +44,6 @@ spec:
               port: {{ .Values.probes.readiness.port }}
             initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
             periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
