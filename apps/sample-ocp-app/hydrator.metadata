@@ -1,6 +1,6 @@
 {
   "repoURL": "https://github.com/piomin/gitops-apps-config.git",
-  "drySha": "a37a1c269eea93b9d1bc6cec6270185a2aecdea1",
+  "drySha": "8e973d99d613a9fb1f597324c5170719c6c99596",
   "commands": [
     "helm template . --name-template sample-ocp-app --namespace pminkows-prod --values ./apps/sample-ocp-app/values-prod.yaml --include-crds"
   ]
